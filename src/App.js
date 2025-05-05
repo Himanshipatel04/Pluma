@@ -13,6 +13,9 @@ import { ToastContainer } from 'react-toastify';
 import Dashboard from "./pages/Dashboard";
 import CreateBlog from "./pages/CreateBlog";
 import AdminDashboard from "./pages/AdminDashboard";
+import Terms from "./pages/Terms";
+import FAQ from "./pages/FAQ";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 
 const App = () => {
@@ -29,6 +32,9 @@ const App = () => {
         <Route path="/create-blog" element={<CreateBlog />} />
         <Route path="/profile/:id" element={<Profile />} />
         <Route path="/adminDashboard" element={<AdminDashboard />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/faqs" element={<FAQ />} />
+        <Route path="/terms" element={<Terms />} />
       </Routes>
       <Footer />
         <ToastContainer position="top-right"  autoClose={1500}     />

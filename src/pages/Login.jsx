@@ -55,13 +55,14 @@ const Login = () => {
         toast.success("Login successful!");
         localStorage.setItem("user", JSON.stringify(res.data.user));
         if (res.data.user.role === "admin") {
+          navigate("/adminDashboard");
           setTimeout(() => {
-            navigate("/adminDashboard");
             window.location.reload();
           }, 2000);
         } else {
+          navigate("/");
           setTimeout(() => {
-            navigate("/");
+            window.location.reload();
           }, 2000);
         }
       }
@@ -75,7 +76,7 @@ const Login = () => {
   };
 
   return (
-    <div className="h-fit flex justify-center items-center py-20">
+    <div className="h-fit flex justify-center items-center py-16 md:py-20">
       <motion.div
         className="w-full flex justify-center items-center"
         initial={{ opacity: 0, y: -50 }}
@@ -84,7 +85,7 @@ const Login = () => {
       >
         <form
           onSubmit={handleSubmit}
-          className="w-[25%] flex flex-col gap-4 p-4 border-2 rounded-xl mt-24"
+          className="w-[75%] md:w-[25%] flex flex-col gap-4 p-4 border-2 rounded-xl mt-10 md:24"
         >
           <div className="flex justify-center items-center flex-col gap-4">
             <img src={logo} alt="Logo" className="h-24" />

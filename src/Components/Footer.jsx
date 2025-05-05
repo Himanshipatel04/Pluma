@@ -6,6 +6,7 @@ import {
   FaLinkedin,
 } from "react-icons/fa";
 import logo from "../assets/logo.png";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -39,11 +40,11 @@ const Footer = () => {
           {/* Features */}
           <div>
             <h2 className="text-lg font-semibold mb-4">Features</h2>
-            <ul className="space-y-2 text-sm text-gray-300">
-              <li className="hover:text-white cursor-pointer">Write</li>
-              <li className="hover:text-white cursor-pointer">Share</li>
-              <li className="hover:text-white cursor-pointer">Connect</li>
-              <li className="hover:text-white cursor-pointer">Community</li>
+            <ul className="space-y-2  flex flex-col text-sm text-gray-300">
+              <Link to={"/privacy"} className="hover:text-white cursor-pointer">Privacy Policy</Link>
+              <Link to={"/terms"} className="hover:text-white cursor-pointer">Terms and Conditions</Link>
+              <Link to={"/faqs"} className="hover:text-white cursor-pointer">FAQs</Link>
+              {/* <Link to={"/"} className="hover:text-white cursor-pointer">Community</Link> */}
             </ul>
           </div>
 

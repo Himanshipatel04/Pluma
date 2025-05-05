@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 
 const Landing = () => {
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-white via-pink-50 to-pink-100 flex items-center justify-center px-6">
-      <div className="max-w-7xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+    <div className="min-h-screen  w-full bg-gradient-to-br from-white via-pink-50 to-pink-100 flex items-center justify-center px-6">
+      <div className="max-w-7xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center mt-20 md:mt-0">
         {/* Left: Text Content */}
         <div className="space-y-10 text-center md:text-left px-2 md:px-0">
           <motion.p

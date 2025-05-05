@@ -9,11 +9,11 @@ const Profile = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
-
   const [selectedBlog, setSelectedBlog] = useState(null);
   const [viewModalOpen, setViewModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+
 
   useEffect(() => {
     const fetchUserBlogs = async () => {
@@ -96,6 +96,16 @@ const Profile = () => {
         <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-[#b03980]"></div>
       </div>
     );
+  }
+
+  if (!user){
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <h1 className="text-2xl font-bold text-red-500">
+          Please login to view your profile.
+        </h1>
+      </div>
+    );                            
   }
 
   return (
