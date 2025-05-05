@@ -60,9 +60,7 @@ const Dashboard = () => {
   ];
 
   const handleCategoryClick = (category) => {
-    setSelectedCategory((prev) =>
-      prev === category ? null : category
-    );
+    setSelectedCategory((prev) => (prev === category ? null : category));
   };
 
   return (
@@ -109,24 +107,36 @@ const Dashboard = () => {
           {filteredBlogs.map((blog, index) => (
             <div
               key={index}
-              className="p-5 bg-white rounded-lg shadow-md cursor-pointer hover:shadow-lg transition"
+              className="relative  overflow-hidden p-5 bg-white rounded-lg shadow-md cursor-pointer hover:shadow-lg transition"
               onClick={() => navigate(`/blog/${blog._id}`)}
             >
-              <h2 className="text-xl font-semibold text-[#b03980]">
-                {blog.title}
-              </h2>
-              <p className="text-sm text-gray-600">By {blog.author.name}</p>
-              <p className="text-gray-700 text-sm mt-2">
-                {blog.content.split(" ").slice(0, 25).join(" ")}...
-              </p>
+              {/* Reposted Strip */}
+              {blog?.repostedBy && (
+                <div className="absolute top-1 -left-3">
+                  <div className="transform -rotate-[20deg] bg-pink-100 text-[#b03980] text-[10px] font-bold pl-7 pr-10 py-0.5 shadow-md ">
+                    REPOSTED
+                  </div>
+                </div>
+              )}
 
-              <div className="flex justify-between items-center mt-3">
-                <span className="inline-block px-3 py-1 text-xs bg-gray-200 rounded-full">
-                  {blog.category}
-                </span>
-                <span className="text-xs text-pink-700 font-medium">
-                  ❤️ {getLikesCount(blog._id)} Likes
-                </span>
+              {/* Space adjustment when reposted */}
+              <div className={blog?.repostedBy ? "mt-4" : ""}>
+                <h2 className="text-xl font-semibold text-[#b03980]">
+                  {blog.title}
+                </h2>
+                <p className="text-sm text-gray-600">By {blog.author.name}</p>
+                <p className="text-gray-700 text-sm mt-2">
+                  {blog.content.split(" ").slice(0, 25).join(" ")}...
+                </p>
+
+                <div className="flex justify-between items-center mt-3">
+                  <span className="inline-block px-3 py-1 text-xs bg-gray-200 rounded-full">
+                    {blog.category}
+                  </span>
+                  <span className="text-xs text-pink-700 font-medium">
+                    ❤️ {getLikesCount(blog._id)} Likes
+                  </span>
+                </div>
               </div>
             </div>
           ))}

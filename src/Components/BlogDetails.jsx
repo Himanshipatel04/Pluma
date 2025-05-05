@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { FaRegHeart } from "react-icons/fa"; // ❤️ icons
+import { BiRepost } from "react-icons/bi";
 
 const BlogDetails = () => {
   const { id } = useParams(); // blog ID
@@ -30,6 +31,7 @@ const BlogDetails = () => {
         ]);
 
         setBlog(blogRes.data.blog);
+        console.log(blogRes.data.blog);
         setLikes(likesRes.data.likesCount || 0); // Adjust based on your API
         // Check if the user has already liked
         if (user) {
@@ -49,6 +51,23 @@ const BlogDetails = () => {
 
     fetchBlogAndLikes();
   }, [id, likedByUser]);
+
+  const handleRepost = async () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user || !user.id) {
+      toast.error("You must be logged in to repost a blog.");
+      return;
+    }
+    try {
+      const response = await axios.post(
+        `http://localhost:4000/api/v1/blogs/${id}/${user.id}/repost`
+      ); // Adjust the endpoint as needed
+      console.log(response);
+      toast.success("Blog reposted successfully!"); // Show success message
+    } catch (error) {
+      toast.error("Failed to repost the blog.");
+    }
+  };
 
   const handleLikeToggle = async () => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -91,7 +110,7 @@ const BlogDetails = () => {
     );
 
   return (
-    <div className="flex justify-center items-center min-h-[100vh] h-fit bg-gradient-to-br from-pink-100 via-white to-pink-200 py-10 md:py-20">
+    <div className="flex justify-center items-center min-h-[100vh] h-fit bg-gradient-to-br from-pink-100 via-white to-pink-200 py-10">
       <motion.div
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
@@ -104,10 +123,27 @@ const BlogDetails = () => {
         >
           &times;
         </button> */}
-
-        <h2 className="text-3xl font-bold mb-2 text-[#b03980]">
-          {blog.title || ""}
-        </h2>
+        {/* Reposted Strip */}
+        {blog?.repostedBy && (
+          <div className="absolute top-1 -left-3">
+            <div className="transform -rotate-[20deg] bg-pink-100 text-[#b03980] text-[10px] font-bold pl-7 pr-10 py-0.5 shadow-md ">
+              REPOSTED
+            </div>
+          </div>
+        )}
+        <div className="flex justify-between">
+          <h2 className="text-3xl font-bold mb-2 text-[#b03980]">
+            {blog.title || ""}
+          </h2>
+          {!blog?.repostedBy && (
+            <button
+              onClick={handleRepost}
+              className="bg-gray-300 hover:bg-gray-400 hover:text-gray-200 px-3 space-x-3 py-1 rounded-xl text-gray-800 flex items-center justify-between"
+            >
+              <BiRepost size={24} /> Repost
+            </button>
+          )}
+        </div>
 
         {blog.updatedAt > blog.createdAt && (
           <p className="w-fit my-2 px-3 py-1 text-sm bg-gray-200 rounded-full">
@@ -115,9 +151,18 @@ const BlogDetails = () => {
           </p>
         )}
 
-        <p className="text-sm text-gray-500 mb-1">
-          By {blog.author.name || ""}
-        </p>
+        {blog.repostedBy ? (
+          <div>
+            <p className="text-sm text-gray-500 mb-1">
+              By {blog.author.name || ""} (Reposted by{" "}
+              {blog.repostedBy.name || ""})
+            </p>
+          </div>
+        ) : (
+          <p className="text-sm text-gray-500 mb-1">
+            By {blog.author.name || ""}
+          </p>
+        )}
         <p className="text-sm text-gray-500 mb-1">
           Published on: {toDateString(blog.createdAt)}
         </p>

@@ -1,10 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { FaEnvelope, FaUser, FaEye } from "react-icons/fa";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const Profile = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const user = JSON.parse(localStorage.getItem("user"));
   const [blogs, setBlogs] = useState([]);
@@ -13,7 +14,6 @@ const Profile = () => {
   const [viewModalOpen, setViewModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-
 
   useEffect(() => {
     const fetchUserBlogs = async () => {
@@ -66,8 +66,9 @@ const Profile = () => {
   };
 
   const handleView = (blog) => {
-    setSelectedBlog(blog);
-    setViewModalOpen(true);
+    // setSelectedBlog(blog);
+    // setViewModalOpen(true);
+    navigate(`/blog/${blog._id}`);
   };
 
   const handleDeletePrompt = (blog) => {
@@ -98,14 +99,14 @@ const Profile = () => {
     );
   }
 
-  if (!user){
+  if (!user) {
     return (
       <div className="flex justify-center items-center min-h-screen">
         <h1 className="text-2xl font-bold text-red-500">
           Please login to view your profile.
         </h1>
       </div>
-    );                            
+    );
   }
 
   return (
@@ -161,8 +162,15 @@ const Profile = () => {
       ) : (
         <ul className="space-y-4">
           {blogs.map((blog) => (
-            <li key={blog._id} className="bg-gray-100 p-4 rounded-md shadow">
-              <h3 className="text-lg font-bold text-[#b03980]">{blog.title}</h3>
+            <li key={blog._id} className="bg-gray-100/50 p-4 rounded-md shadow">
+              <h3 className="text-lg font-bold text-[#b03980]">
+                {blog.title}{" "}
+                {blog.repostedBy && (
+                  <span className="px-3 py-1 text-xs text-white bg-gray-400 rounded-full">
+                    REPOSTED
+                  </span>
+                )}
+              </h3>
               <p className="text-sm text-gray-700">
                 {blog.content.slice(0, 100)}...
               </p>
