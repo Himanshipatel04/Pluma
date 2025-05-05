@@ -16,11 +16,13 @@ import AdminDashboard from "./pages/AdminDashboard";
 import Terms from "./pages/Terms";
 import FAQ from "./pages/FAQ";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
-
+import BlogDetails from "./Components/BlogDetails";
+import ScrollToTop from "./constants/ScrollToTop";        
 
 const App = () => {
   return (
     <Router>
+      <ScrollToTop />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -35,6 +37,9 @@ const App = () => {
         <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/faqs" element={<FAQ />} />
         <Route path="/terms" element={<Terms />} />
+        <Route path="/blog/:id" element={<BlogDetails />} />             
+        <Route path="*" element={<h1 className="text-center text-3xl mt-20">404 Not Found</h1>} />            
+
       </Routes>
       <Footer />
         <ToastContainer position="top-right"  autoClose={1500}     />
