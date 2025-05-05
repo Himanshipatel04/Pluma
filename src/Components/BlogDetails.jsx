@@ -98,7 +98,7 @@ const BlogDetails = () => {
       toast.error(error?.response?.data?.message || "Action failed.");
     } finally {
       setLikeLoading(false);
-      window.location.reload(); // Refresh the page to get updated likes
+      window.location.reload();
     }
   };
 
