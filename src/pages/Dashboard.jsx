@@ -15,8 +15,8 @@ const Dashboard = () => {
       try {
         setLoading(true);
         const [blogsRes, likesRes] = await Promise.all([
-          axios.get("http://localhost:4000/api/v1/blogs"),
-          axios.get("http://localhost:4000/api/v1/likes"),
+          axios.get("https://pluma-backend.onrender.com/api/v1/blogs"),
+          axios.get("https://pluma-backend.onrender.com/api/v1/likes"),
         ]);
         setBlogs(blogsRes.data.blogs || []);
         setLikes(likesRes.data.likes || []);

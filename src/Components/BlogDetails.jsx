@@ -26,8 +26,8 @@ const BlogDetails = () => {
       try {
         const user = JSON.parse(localStorage.getItem("user"));
         const [blogRes, likesRes] = await Promise.all([
-          axios.get(`http://localhost:4000/api/v1/blogs/${id}`),
-          axios.get(`http://localhost:4000/api/v1/likes/${id}`),
+          axios.get(`https://pluma-backend.onrender.com/api/v1/blogs/${id}`),
+          axios.get(`https://pluma-backend.onrender.com/api/v1/likes/${id}`),
         ]);
 
         setBlog(blogRes.data.blog);
@@ -60,7 +60,7 @@ const BlogDetails = () => {
     }
     try {
       const response = await axios.post(
-        `http://localhost:4000/api/v1/blogs/${id}/${user.id}/repost`
+        `https://pluma-backend.onrender.com/api/v1/blogs/${id}/${user.id}/repost`
       ); // Adjust the endpoint as needed
       console.log(response);
       toast.success("Blog reposted successfully!"); // Show success message
@@ -80,14 +80,14 @@ const BlogDetails = () => {
       setLikeLoading(true);
 
       if (likedByUser) {
-        await axios.post(`http://localhost:4000/api/v1/likes/createLike`, {
+        await axios.post(`https://pluma-backend.onrender.com/api/v1/likes/createLike`, {
           userId: user.id,
           blogId: id,
         });
         setLikes((prev) => prev - 1);
         setLikedByUser(false);
       } else {
-        await axios.post(`http://localhost:4000/api/v1/likes/createLike`, {
+        await axios.post(`https://pluma-backend.onrender.com/api/v1/likes/createLike`, {
           userId: user.id,
           blogId: id,
         });

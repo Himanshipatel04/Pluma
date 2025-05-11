@@ -47,8 +47,8 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const blogRes = await axios.get("http://localhost:4000/api/v1/blogs");
-        const userRes = await axios.get("http://localhost:4000/api/v1/users");
+        const blogRes = await axios.get("https://pluma-backend.onrender.com/api/v1/blogs");
+        const userRes = await axios.get("https://pluma-backend.onrender.com/api/v1/users");
         setBlogs(blogRes.data.blogs);
         setUsers(userRes.data.users);
       } catch (err) {
@@ -60,7 +60,7 @@ const AdminDashboard = () => {
 
   const handleDeleteBlog = async (id) => {
     try {
-      await axios.delete(`http://localhost:4000/api/v1/blogs/${id}`);
+      await axios.delete(`https://pluma-backend.onrender.com/api/v1/blogs/${id}`);
       setBlogs(blogs.filter((b) => b._id !== id));
     } catch (err) {
       console.error("Delete blog error:", err);
@@ -69,7 +69,7 @@ const AdminDashboard = () => {
 
   const handleDeleteUser = async (id) => {
     try {
-      await axios.delete(`http://localhost:4000/api/v1/users/${id}`);
+      await axios.delete(`https://pluma-backend.onrender.com/api/v1/users/${id}`);
       setUsers(users.filter((u) => u._id !== id));
     } catch (err) {
       console.error("Delete user error:", err);

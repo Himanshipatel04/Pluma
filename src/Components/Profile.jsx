@@ -19,7 +19,7 @@ const Profile = () => {
     const fetchUserBlogs = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:4000/api/v1/blogs/user/${id}`
+          `https://pluma-backend.onrender.com/api/v1/blogs/user/${id}`
         );
         setBlogs(res.data.blogs);
       } catch (err) {
@@ -49,7 +49,7 @@ const Profile = () => {
 
     try {
       const res = await axios.put(
-        `http://localhost:4000/api/v1/blogs/${selectedBlog._id}`,
+        `https://pluma-backend.onrender.com/api/v1/blogs/${selectedBlog._id}`,
         updatedBlog
       );
 
@@ -79,7 +79,7 @@ const Profile = () => {
   const confirmDelete = async () => {
     try {
       await axios.delete(
-        `http://localhost:4000/api/v1/blogs/${selectedBlog._id}`
+        `https://pluma-backend.onrender.com/api/v1/blogs/${selectedBlog._id}`
       );
       setBlogs(blogs.filter((b) => b._id !== selectedBlog._id));
       setDeleteModalOpen(false);

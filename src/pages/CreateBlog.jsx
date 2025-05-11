@@ -71,7 +71,7 @@ const CreateBlog = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:4000/api/v1/blogs/create",
+        "https://pluma-backend.onrender.com/api/v1/blogs/create",
         blogData
       );
       console.log(res);
