@@ -25,14 +25,14 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-gradient-to-br from-white via-white to-pink-200 shadow-md px-6 fixed w-full h-[10vh] z-50">
+    <div className="bg-gradient-to-br from-white via-white to-pink-200 shadow-md px-6 fixed w-full h-[7vh] md:h-[10vh] z-50">
       <div className="flex items-center justify-between h-full">
         {/* Logo */}
         <Link
           to="/"
           className="h-20 w-fit ml-2 md:ml-24 flex items-center justify-center"
         >
-          <img className="h-16" src={logo} alt="Logo" />
+          <img className="h-12 md:h-16" src={logo} alt="Logo" />
         </Link>
 
         {/* Desktop Nav */}
@@ -128,7 +128,7 @@ const Navbar = () => {
               ) : (
                 <>
                   <Link
-                    to="/signup"
+                    to="/register"
                     onClick={() => setMenuOpen(false)}
                     className="block w-full px-4 py-2 border border-[#ba438a] text-[#ba438a] rounded hover:bg-pink-50 mt-4"
                   >

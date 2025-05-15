@@ -65,7 +65,7 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen p-6 bg-gray-100">
-      <h1 className="text-3xl font-bold text-center text-gray-700 mb-8">
+      <h1 className="text-3xl font-bold text-center text-gray-700 mb-6 md:mb-8 mt-12 md:mt-0">
         All Blogs
       </h1>
 

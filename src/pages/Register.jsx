@@ -76,7 +76,7 @@ const Register = () => {
       >
         <form
           onSubmit={handleSubmit}
-          className="w-[75%] md:w-[25%] flex flex-col gap-4 p-3 border-2 rounded-xl mt-10 md:24"
+          className="w-[85%] md:w-[25%] flex flex-col gap-4 p-3 border-2 rounded-xl mt-10 md:24"
         >
           <div className="flex justify-center items-center flex-col gap-4">
             <img src={logo} alt="" className="h-24" />

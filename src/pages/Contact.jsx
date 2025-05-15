@@ -28,8 +28,8 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-pink-50 to-pink-100 flex items-center justify-center px-6 py-20">
-      <div className="w-full max-w-4xl bg-white p-10 rounded-3xl shadow-xl mt-20">
+    <div className="min-h-screen bg-gradient-to-br from-white via-pink-50 to-pink-100 flex items-center justify-center px-6 py-10 md:py-20">
+      <div className="w-full max-w-4xl bg-white p-10 rounded-3xl shadow-xl mt-10 md:mt-20">
         <motion.h2
           className="text-3xl md:text-4xl font-bold text-[#b03980] text-center mb-6"
           initial={{ y: -30, opacity: 0 }}
